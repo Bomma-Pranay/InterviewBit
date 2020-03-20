@@ -1,0 +1,49 @@
+'''
+Remove Duplicates from Sorted List II
+Asked in:  
+Microsoft
+VMWare
+Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+
+For example,
+Given 1->2->3->3->4->4->5, return 1->2->5.
+Given 1->1->1->2->3, return 2->3.
+'''
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    # @param A : head node of linked list
+    # @return the head node in the linked list
+    def deleteDuplicates(self, h):
+        if h==None or h.next==None:
+            return h
+        th=h
+        d={}
+        while th:
+            if th.val not in d:
+                d[th.val]=1
+            else:
+                d[th.val] += 1
+            th=th.next
+        l=[]
+        for i in d:
+            if d[i]==1:
+                l.append(d)
+        #print(s)
+        l.sort()
+        if len(l)>0:
+            h2=ListNode(l[0])
+            th2=h2
+            for i in range(1,len(l)):
+                x=ListNode(l[i])
+                h2.next=x
+                h2=h2.next
+            return th2
+            
+        
+        
+
